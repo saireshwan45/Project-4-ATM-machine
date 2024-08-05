@@ -1,0 +1,78 @@
+
+print("Welcome to the ATM Machine")
+account_balance = 50000 
+
+
+def check_balance():
+    print(f"Your current balance is: ₹{account_balance}")
+
+
+def deposit_money():
+    global account_balance
+    deposit_amount = float(input("Enter amount to deposit: ₹"))
+    if deposit_amount > 0:
+        account_balance += deposit_amount
+        print(f"Successfully deposited ₹{deposit_amount}. New balance: ₹{account_balance}")
+    else:
+        print("Invalid deposit amount.")
+
+
+def withdraw_money():
+    global account_balance
+    withdraw_amount = float(input("Enter amount to withdraw: ₹"))
+    if withdraw_amount > 0 and withdraw_amount <= account_balance:
+        account_balance -= withdraw_amount
+        print(f"Successfully withdrew ₹{withdraw_amount}. New balance: ₹{account_balance}")
+    elif withdraw_amount > account_balance:
+        print("Insufficient funds.")
+    else:
+        print("Invalid withdrawal amount.")
+
+
+def quick_withdraw():
+    global account_balance
+    quick_withdraw_options = [1000, 2000, 5000, 10000]
+
+    print("\nQuick Withdrawal Options:")
+    for option in quick_withdraw_options:
+        print(f"₹{option}")
+
+    withdraw_amount = int(input("Select an amount to withdraw: ₹"))
+    if withdraw_amount in quick_withdraw_options:
+        if withdraw_amount <= account_balance:
+            account_balance -= withdraw_amount
+            print(f"Successfully withdrew ₹{withdraw_amount}. New balance: ₹{account_balance}")
+        else:
+            print("Insufficient funds.")
+    else:
+        print("Invalid quick withdrawal amount.")
+
+
+def main_menu():
+    while True:
+        print("\nWelcome to the ATM")
+        print("1. Check Balance")
+        print("2. Deposit Money")
+        print("3. Withdraw Money")
+        print("4. Quick Withdrawal")
+        print("5. Exit")
+
+        user_choice = input("Choose an option: ")
+
+        if user_choice == '1':
+            check_balance()
+        elif user_choice == '2':
+            deposit_money()
+        elif user_choice == '3':
+            withdraw_money()
+        elif user_choice == '4':
+            quick_withdraw()
+        elif user_choice == '5':
+            print("Exiting the ATM. Goodbye!")
+            break
+        else:
+            print("Invalid choice, please try again.")
+
+
+if __name__ == "__main__":
+    main_menu()
